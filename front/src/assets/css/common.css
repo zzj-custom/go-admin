@@ -1,0 +1,93 @@
+@use "sass:math";
+/* 背景色 */
+$background-color-white: #ffffff;
+
+
+$vw_base: 1920;
+$vh_base: 1080;
+/* 计算vw */
+@function vw($px) {
+@return math.div($px,  $vw_base) * 100vw;
+}
+
+/* 计算vh */
+@function vh($px) {
+@return math.div($px,  $vh_base) * 100vh;
+}
+
+
+/**
+ * 全局样式代码块
+ */
+@mixin flex($type) {
+    display: flex;
+
+    /* 水平居中 */
+    @if $type ==1 {
+        justify-content: center;
+    }
+
+    /* 垂直居中 */
+    @else if($type ==2) {
+        align-items: center;
+    }
+
+    /* 水平垂直居中 */
+    @else if($type ==3) {
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 水平拉伸垂直居中 */
+    @else if($type ==4) {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* 水平拉伸换行 */
+    @else if($type ==5) {
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    /* 换行 */
+    @else if($type ==6) {
+        flex-wrap: wrap;
+    }
+}
+
+/* 滚动条容器 */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    background-color: #313340;
+    border-radius: 10px;
+    -webkit-transition: all .2s ease-in-out;
+
+    &:hover {
+        background-color: #4c4e59;
+        cursor: pointer;
+    }
+}
+/* 单行文本溢出 */
+.text-hidden-siggle {
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis; 
+}
+/* 多行文本溢出 */
+.text-hidden-mul {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
